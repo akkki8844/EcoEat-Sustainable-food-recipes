@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoEat - Sustainable Recipes for a Better Planet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #10b981;
+            --dark-green: #047857;
+            --light-green: #d1fae5;
+            --accent-green: #34d399;
+            --earth-brown: #92400e;
+            --warm-yellow: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+        }
+
+        .leaf-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+=======
+
+<<<<<<< SEARCH
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+=======
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+=======
+
+<<<<<<< SEARCH
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+=======
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Fixed button styling */
+        .btn-fixed {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-fixed:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-fixed:hover:before {
+            left: 100%;
+        }
+
+        /* Enhanced mobile menu */
+        .mobile-menu-open {
+            transform: translateX(0) !important;
+        }
+
+        /* Recipe filter styles */
+        .recipe-filter {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #10b981;
+        }
+
+        .recipe-filter.active {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .recipe-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 80px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .floating-leaves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .leaf {
+            position: absolute;
+            color: var(--accent-green);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10vh) rotate(180deg);
+            }
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--primary-green);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Floating Leaves Animation -->
+    <div class="floating-leaves" id="floatingLeaves"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-leaf text-white text-lg"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">EcoEat</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-green-600 font-medium">Home</a>
+                    <a href="#recipes" class="nav-link text-gray-700 hover:text-green-600 font-medium">Recipes</a>
+                    <a href="#calculator" class="nav-link text-gray-700 hover:text-green-600 font-medium">Calculator</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-green-600 font-medium">About</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-green-600 font-medium">Contact</a>
+                </div>
+                <button class="md:hidden text-gray-700" id="mobileMenuBtn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="fixed top-0 left-0 w-full h-full bg-white z-40 transform -translate-x-full transition-transform duration-300" id="mobileMenu">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#home" class="text-2xl text-gray-700 hover:text-green-600 mobile-nav-link">Home</a>
+            <a href="#recipes" class="text-2xl text-gray-700 hover:text-green-600 mobile-nav-link">Recipes</a>
+            <a href="#calculator" class="text-2xl text-gray-700 hover:text-green-600 mobile-nav-link">Calculator</a>
+            <a href="#about" class="text-2xl text-gray-700 hover:text-green-600 mobile-nav-link">About</a>
+            <a href="#contact" class="text-2xl text-gray-700 hover:text-green-600 mobile-nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="section gradient-bg leaf-pattern relative">
+        <div class="container mx-auto px-6 text-center text-white">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">Welcome to EcoEat</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Discover delicious, sustainable recipes that nourish your body and protect our planet</p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button class="bg-white text-green-600 px-8 py-4 rounded-full font-semibold hover:bg-green-50 transition-all duration-300 transform hover:scale-105" onclick="scrollToSection('recipes')">
+                        <i class="fas fa-utensils mr-2"></i>
+                        Explore Recipes
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-green-600 transition-all duration-300 transform hover:scale-105" onclick="scrollToSection('calculator')">
+                        <i class="fas fa-calculator mr-2"></i>
+                        Carbon Calculator
+                    </button>
+                </div>
+            </div>
+            <div class="mt-16 fade-in">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3ac8b50d-09e6-4d6b-934f-bd9b7006459d.png" alt="Beautiful spread of colorful sustainable organic vegetables, fruits, grains and plant-based foods arranged on a wooden table with natural lighting and green plants in background" class="rounded-lg shadow-2xl mx-auto" />
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Featured Stats -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="fade-in" data-aos="fade-up">
+                    <div class="stat-number text-4xl font-bold text-green-600 mb-2">500+</div>
+                    <div class="text-gray-600">Sustainable Recipes</div>
+                </div>
+                <div class="fade-in" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number text-4xl font-bold text-green-600 mb-2">85%</div>
+                    <div class="text-gray-600">Less Carbon Footprint</div>
+                </div>
+                <div class="fade-in" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number text-4xl font-bold text-green-600 mb-2">1M+</div>
+                    <div class="text-gray-600">Meals Planned</div>
+                </div>
+                <div class="fade-in" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number text-4xl font-bold text-green-600 mb-2">50k+</div>
+                    <div class="text-gray-600">Happy Users</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section id="recipes" class="section bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Sustainable Recipes</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover delicious plant-based recipes with detailed sustainability metrics</p>
+            </div>
+
+            <!-- Recipe Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="recipe-filter px-6 py-3 rounded-full font-semibold transition-all duration-300" data-filter="all">
+                    All Recipes
+                </button>
+                <button class="recipe-filter px-6 py-3 rounded-full font-semibold transition-all duration-300" data-filter="easy">
+                    Easy
+                </button>
+                <button class="recipe-filter px-6 py-3 rounded-full font-semibold transition-all duration-300" data-filter="medium">
+                    Medium
+                </button>
+                <button class="recipe-filter px-6 py-3 rounded-full font-semibold transition-all duration-300" data-filter="quick">
+                    Quick (< 30 min)
+                </button>
+                <button class="recipe-filter px-6 py-3 rounded-full font-semibold transition-all duration-300" data-filter="high-protein">
+                    High Protein
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipesGrid">
+                <!-- Recipe cards will be dynamically generated -->
+            </div>
+
+            <!-- Loading state -->
+            <div id="loadingState" class="text-center py-8 hidden">
+                <div class="loading mx-auto mb-4"></div>
+                <p class="text-gray-600">Loading delicious sustainable recipes...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator & Diet Planner Section -->
+    <section id="calculator" class="section bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Carbon Calculator & Diet Planner</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Calculate your food carbon footprint and get personalized sustainable meal plans</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Carbon Calculator -->
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-calculator text-green-600 mr-3"></i>
+                        Carbon Footprint Calculator
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Daily Meat Consumption (grams)</label>
+                            <input type="number" id="meatInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="e.g., 200">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Daily Dairy Consumption (ml)</label>
+                            <input type="number" id="dairyInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="e.g., 300">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Local vs Imported Food (%)</label>
+                            <input type="range" id="localFoodRange" min="0" max="100" value="50" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>0% Local</span>
+                                <span id="localFoodValue">50% Local</span>
+                                <span>100% Local</span>
+                            </div>
+                        </div>
+                        <button onclick="calculateCarbon()" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
+                            Calculate Carbon Footprint
+                        </button>
+                        <div id="carbonResult" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
+                            <div class="text-lg font-semibold text-green-800" id="carbonValue"></div>
+                            <div class="text-sm text-green-600 mt-2" id="carbonComparison"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diet Planner -->
+                <div class="bg-gradient-to-br from-yellow-50 to-green-50 p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-apple-alt text-green-600 mr-3"></i>
+                        Personalized Diet Planner
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Dietary Preference</label>
+                            <select id="dietSelect" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option value="vegan">Vegan</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="pescatarian">Pescatarian</option>
+                                <option value="flexitarian">Flexitarian</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Daily Calorie Goal</label>
+                            <input type="number" id="calorieInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="e.g., 2000">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Sustainability Priority</label>
+                            <input type="range" id="sustainabilityRange" min="1" max="10" value="8" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>Low</span>
+                                <span id="sustainabilityValue">High</span>
+                                <span>Maximum</span>
+                            </div>
+                        </div>
+                        <button onclick="generateDietPlan()" class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-yellow-700 transition-all duration-300 transform hover:scale-105">
+                            Generate Diet Plan
+                        </button>
+                        <div id="dietResult" class="hidden mt-4 p-4 bg-yellow-100 rounded-lg">
+                            <div class="text-lg font-semibold text-yellow-800 mb-2">Your Personalized Plan</div>
+                            <div id="dietPlanContent" class="text-sm text-yellow-700"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section gradient-bg leaf-pattern text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">About EcoEat</h2>
+                <p class="text-xl max-w-3xl mx-auto">We're on a mission to make sustainable eating accessible, delicious, and impactful for everyone</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="slide-in-left">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/651fe6db-cea9-49c6-964d-2b8c4debb076.png" alt="Team of diverse environmental scientists and chefs working together in a modern sustainable kitchen with plants and natural lighting, preparing healthy plant-based meals" class="rounded-lg shadow-2xl" />
+                </div>
+                <div class="fade-in">
+                    <h3 class="text-3xl font-bold mb-6">Our Story</h3>
+                    <p class="text-lg mb-6">Founded in 2023, EcoEat was born from the belief that food choices can be a powerful force for environmental change. Our team of nutritionists, environmental scientists, and passionate cooks work together to create recipes that are not only delicious but also minimize environmental impact.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-seedling text-green-300 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Sustainable Sourcing</h4>
+                                <p class="text-sm text-green-100">We prioritize local, organic, and seasonal ingredients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-heart text-green-300 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Health Focused</h4>
+                                <p class="text-sm text-green-100">Nutritionally balanced recipes for optimal wellness</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-globe text-green-300 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Global Impact</h4>
+                                <p class="text-sm text-green-100">Reducing food miles and carbon emissions</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-users text-green-300 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Community Driven</h4>
+                                <p class="text-sm text-green-100">Building a movement of conscious eaters</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Get In Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Have questions, suggestions, or want to collaborate? We'd love to hear from you!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Send us a message</h3>
+                        <form class="space-y-4" id="contactForm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">First Name</label>
+                                    <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Last Name</label>
+                                    <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                    <option>General Inquiry</option>
+                                    <option>Recipe Suggestion</option>
+                                    <option>Partnership</option>
+                                    <option>Technical Support</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="space-y-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-envelope text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-800">Email</div>
+                                        <div class="text-gray-600">hello@ecoeat.com</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-phone text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-800">Phone</div>
+                                        <div class="text-gray-600">+1 (555) 123-4567</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-800">Address</div>
+                                        <div class="text-gray-600">123 Green Street, Eco City, EC 12345</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-leaf text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">EcoEat</span>
+                    </div>
+                    <p class="text-gray-400">Making sustainable eating delicious and accessible for everyone.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-green-400 transition-colors">Home</a></li>
+                        <li><a href="#recipes" class="hover:text-green-400 transition-colors">Recipes</a></li>
+                        <li><a href="#calculator" class="hover:text-green-400 transition-colors">Calculator</a></li>
+                        <li><a href="#about" class="hover:text-green-400 transition-colors">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-green-400 transition-colors">Sustainability Guide</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition-colors">Nutrition Facts</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition-colors">Meal Planning</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for weekly sustainable recipes and tips</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-1 p-2 rounded-l-lg border-none outline-none text-gray-800">
+                        <button class="bg-green-600 px-4 py-2 rounded-r-lg hover:bg-green-700 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 EcoEat. All rights reserved. Made with love for the planet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Recipe Modal -->
+    <div id="recipeModal" class="modal hidden">
+        <div class="modal-content bg-white p-0 rounded-2xl overflow-hidden max-w-4xl">
+            <div id="modalContent">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Recipe Database
+        const recipes = [
+            {
+                id: 1,
+                name: "Rainbow Buddha Bowl",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/012ac9e0-feef-41e0-82cc-7071ec25efbb.png",
+                alt: "Colorful Buddha bowl with quinoa, roasted vegetables, avocado, chickpeas, and tahini dressing arranged beautifully in a ceramic bowl on a wooden surface",
+                cookTime: "25 min",
+                servings: 2,
+                difficulty: "Easy",
+                calories: 450,
+                carbonFootprint: "0.8 kg CO2",
+                foodMiles: "12 miles",
+                waterUsage: "150L",
+                sustainability: 95,
+                ingredients: [
+                    "1 cup quinoa",
+                    "1 cup roasted sweet potato",
+                    "1 cup steamed broccoli",
+                    "1/2 cup chickpeas",
+                    "1 avocado",
+                    "2 tbsp tahini",
+                    "1 tbsp lemon juice",
+                    "Mixed greens"
+                ],
+                instructions: [
+                    "Cook quinoa according to package instructions",
+                    "Roast sweet potato at 400°F for 20 minutes",
+                    "Steam broccoli until tender",
+                    "Arrange all ingredients in a bowl",
+                    "Mix tahini with lemon juice for dressing",
+                    "Drizzle dressing over bowl and serve"
+                ],
+                nutrition: {
+                    protein: "18g",
+                    carbs: "65g",
+                    fat: "15g",
+                    fiber: "12g"
+                }
+            },
+            {
+                id: 2,
+                name: "Mediterranean Lentil Soup",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8a68da0e-0d89-4251-b512-a18f08e6ca28.png",
+                alt: "Hearty Mediterranean lentil soup with red lentils, tomatoes, vegetables and herbs in a rustic bowl with crusty bread on the side",
+                cookTime: "35 min",
+                servings: 4,
+                difficulty: "Easy",
+                calories: 320,
+                carbonFootprint: "0.6 kg CO2",
+                foodMiles: "8 miles",
+                waterUsage: "120L",
+                sustainability: 98,
+                ingredients: [
+                    "1 cup red lentils",
+                    "2 tomatoes, diced",
+                    "1 onion, chopped",
+                    "2 carrots, diced",
+                    "3 cloves garlic",
+                    "4 cups vegetable broth",
+                    "2 tsp olive oil",
+                    "Herbs: thyme, oregano"
+                ],
+                instructions: [
+                    "Heat olive oil in a large pot",
+                    "Sauté onion, carrots, and garlic",
+                    "Add tomatoes and cook for 5 minutes",
+                    "Add lentils, broth, and herbs",
+                    "Simmer for 25 minutes until lentils are tender",
+                    "Season with salt and pepper"
+                ],
+                nutrition: {
+                    protein: "16g",
+                    carbs: "45g",
+                    fat: "4g",
+                    fiber: "15g"
+                }
+            },
+            {
+                id: 3,
+                name: "Green Goddess Smoothie",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d057f17e-1204-4f10-8220-a6914c182422.png",
+                alt: "Vibrant green smoothie in a tall glass garnished with mint leaves, surrounded by fresh spinach, banana, and avocado on a marble surface",
+                cookTime: "5 min",
+                servings: 1,
+                difficulty: "Easy",
+                calories: 280,
+                carbonFootprint: "0.3 kg CO2",
+                foodMiles: "5 miles",
+                waterUsage: "80L",
+                sustainability: 92,
+                ingredients: [
+                    "1 banana",
+                    "1 cup spinach",
+                    "1/2 avocado",
+                    "1 cup plant milk",
+                    "1 tbsp chia seeds",
+                    "1 tsp vanilla",
+                    "Ice cubes"
+                ],
+                instructions: [
+                    "Add all ingredients to blender",
+                    "Blend until smooth and creamy",
+                    "Add ice for desired consistency",
+                    "Pour into glass and serve immediately"
+                ],
+                nutrition: {
+                    protein: "8g",
+                    carbs: "35g",
+                    fat: "12g",
+                    fiber: "10g"
+                }
+            },
+            {
+                id: 4,
+                name: "Stuffed Bell Peppers",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c0cdca70-22d8-4ed6-8655-44267bd2d48c.png",
+                alt: "Colorful bell peppers stuffed with quinoa, vegetables and herbs, baked until tender and garnished with fresh parsley on a rustic baking dish",
+                cookTime: "45 min",
+                servings: 4,
+                difficulty: "Medium",
+                calories: 380,
+                carbonFootprint: "0.7 kg CO2",
+                foodMiles: "10 miles",
+                waterUsage: "140L",
+                sustainability: 90,
+                ingredients: [
+                    "4 bell peppers",
+                    "1 cup cooked quinoa",
+                    "1 zucchini, diced",
+                    "1 onion, chopped",
+                    "2 tomatoes, diced",
+                    "1/4 cup pine nuts",
+                    "Fresh herbs",
+                    "Nutritional yeast"
+                ],
+                instructions: [
+                    "Preheat oven to 375°F",
+                    "Cut tops off peppers and remove seeds",
+                    "Sauté onion and zucchini",
+                    "Mix with quinoa, tomatoes, and herbs",
+                    "Stuff peppers with mixture",
+                    "Bake for 30-35 minutes"
+                ],
+                nutrition: {
+                    protein: "12g",
+                    carbs: "55g",
+                    fat: "8g",
+                    fiber: "9g"
+                }
+            },
+            {
+                id: 5,
+                name: "Asian Stir-Fry Noodles",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5c922438-9f66-4e06-bba8-6f8a2f0d9109.png",
+                alt: "Colorful Asian stir-fry noodles with vegetables like broccoli, carrots, and snap peas in a savory sauce, served in a traditional wok with chopsticks",
+                cookTime: "20 min",
+                servings: 3,
+                difficulty: "Easy",
+                calories: 420,
+                carbonFootprint: "0.5 kg CO2",
+                foodMiles: "15 miles",
+                waterUsage: "110L",
+                sustainability: 88,
+                ingredients: [
+                    "200g rice noodles",
+                    "1 cup broccoli",
+                    "1 carrot, julienned",
+                    "1 cup snap peas",
+                    "2 tbsp soy sauce",
+                    "1 tbsp sesame oil",
+                    "2 cloves garlic",
+                    "Ginger, grated"
+                ],
+                instructions: [
+                    "Cook noodles according to package instructions",
+                    "Heat sesame oil in wok",
+                    "Stir-fry garlic and ginger",
+                    "Add vegetables and cook until tender-crisp",
+                    "Toss with noodles and soy sauce",
+                    "Serve immediately"
+                ],
+                nutrition: {
+                    protein: "14g",
+                    carbs: "70g",
+                    fat: "6g",
+                    fiber: "8g"
+                }
+            },
+            {
+                id: 6,
+                name: "Chocolate Avocado Mousse",
+                image: "https://placehold.co/400x300",
+                alt: "Rich and creamy chocolate avocado mousse in elegant glass cups topped with fresh berries and mint leaves on a dark slate surface",
+                cookTime: "10 min",
+                servings: 4,
+                difficulty: "Easy",
+                calories: 220,
+                carbonFootprint: "0.4 kg CO2",
+                foodMiles: "6 miles",
+                waterUsage: "95L",
+                sustainability: 85,
+                ingredients: [
+                    "2 ripe avocados",
+                    "1/4 cup cocoa powder",
+                    "1/4 cup maple syrup",
+                    "1 tsp vanilla",
+                    "Pinch of salt",
+                    "Fresh berries",
+                    "Mint for garnish"
+                ],
+                instructions: [
+                    "Blend all ingredients until smooth",
+                    "Chill for 2 hours",
+                    "Serve in glasses",
+                    "Top with fresh berries and mint"
+                ],
+                nutrition: {
+                    protein: "4g",
+                    carbs: "25g",
+                    fat: "15g",
+                    fiber: "8g"
+                }
+            }
+        ];
+
+        // Navigation functionality
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle - Enhanced
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let mobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenuOpen = !mobileMenuOpen;
+            if (mobileMenuOpen) {
+                mobileMenu.classList.remove('-translate-x-full');
+                mobileMenu.classList.add('mobile-menu-open');
+                document.body.style.overflow = 'hidden';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            } else {
+                mobileMenu.classList.add('-translate-x-full');
+                mobileMenu.classList.remove('mobile-menu-open');
+                document.body.style.overflow = 'auto';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            }
+        });
+
+        // Close mobile menu when clicking on links or outside
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                mobileMenu.classList.remove('mobile-menu-open');
+                document.body.style.overflow = 'auto';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                mobileMenuOpen = false;
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.add('-translate-x-full');
+                mobileMenu.classList.remove('mobile-menu-open');
+                document.body.style.overflow = 'auto';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                mobileMenuOpen = false;
+            }
+        });
+
+        // Navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Floating leaves animation
+        function createFloatingLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.innerHTML = '<i class="fas fa-leaf"></i>';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.animationDelay = Math.random() * 6 + 's';
+            leaf.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.getElementById('floatingLeaves').appendChild(leaf);
+
+            setTimeout(() => {
+                leaf.remove();
+            }, 8000);
+        }
+
+        setInterval(createFloatingLeaf, 3000);
+
+        // Enhanced recipe cards generation with filtering
+        let currentFilter = 'all';
+
+        function generateRecipeCards(filter = 'all') {
+            const recipesGrid = document.getElementById('recipesGrid');
+            const loadingState = document.getElementById('loadingState');
+            
+            // Show loading
+            loadingState.classList.remove('hidden');
+            recipesGrid.innerHTML = '';
+
+            setTimeout(() => {
+                let filteredRecipes = recipes;
+
+                // Apply filters
+                if (filter !== 'all') {
+                    filteredRecipes = recipes.filter(recipe => {
+                        switch(filter) {
+                            case 'easy':
+                                return recipe.difficulty === 'Easy';
+                            case 'medium':
+                                return recipe.difficulty === 'Medium';
+                            case 'quick':
+                                return parseInt(recipe.cookTime) < 30;
+                            case 'high-protein':
+                                return parseInt(recipe.nutrition.protein) > 15;
+                            default:
+                                return true;
+                        }
+                    });
+                }
+
+                filteredRecipes.forEach((recipe, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'recipe-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.onclick = () => openRecipeModal(recipe);
+
+                    card.innerHTML = `
+                        <div class="relative group">
+                            <img src="${recipe.image}" alt="${recipe.alt}" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+                            <div class="absolute top-4 right-4 bg-green-600 text-white px-2 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                ${recipe.sustainability}% Sustainable
+                            </div>
+                            <div class="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                                <i class="fas fa-fire mr-1"></i>${recipe.calories} cal
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">${recipe.name}</h3>
+                            <div class="flex justify-between text-sm text-gray-600 mb-4">
+                                <span><i class="fas fa-clock mr-1"></i>${recipe.cookTime}</span>
+                                <span><i class="fas fa-users mr-1"></i>${recipe.servings} servings</span>
+                                <span><i class="fas fa-signal mr-1"></i>${recipe.difficulty}</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+                                <div class="bg-green-50 p-3 rounded-lg">
+                                    <div class="font-semibold text-green-800">Carbon Footprint</div>
+                                    <div class="text-green-600">${recipe.carbonFootprint}</div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="font-semibold text-blue-800">Food Miles</div>
+                                    <div class="text-blue-600">${recipe.foodMiles}</div>
+                                </div>
+                            </div>
+                            <button class="btn-fixed w-full mt-4 bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-eye mr-2"></i>View Recipe
+                            </button>
+                        </div>
+                    `;
+
+                    recipesGrid.appendChild(card);
+                });
+
+                // Hide loading and show cards
+                loadingState.classList.add('hidden');
+                
+                // Trigger animations
+                setTimeout(() => {
+                    document.querySelectorAll('.recipe-card').forEach(card => {
+                        card.classList.add('visible');
+                    });
+                }, 100);
+
+            }, 800); // Simulate loading time
+        }
+
+        // Recipe filter functionality
+        function initializeRecipeFilters() {
+            const filterButtons = document.querySelectorAll('.recipe-filter');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Get filter value and generate cards
+                    const filter = button.getAttribute('data-filter');
+                    currentFilter = filter;
+                    generateRecipeCards(filter);
+                });
+            });
+
+            // Set default active filter
+            document.querySelector('.recipe-filter[data-filter="all"]').classList.add('active');
+        }
+
+        // Open recipe modal
+        function openRecipeModal(recipe) {
+            const modal = document.getElementById('recipeModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <div class="relative">
+                    <img src="${recipe.image}" alt="${recipe.alt}" class="w-full h-64 object-cover" />
+                    <button onclick="closeRecipeModal()" class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-times text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="p-8">
+                    <div class="mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">${recipe.name}</h2>
+                        <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                            <span><i class="fas fa-clock mr-1"></i>${recipe.cookTime}</span>
+                            <span><i class="fas fa-users mr-1"></i>${recipe.servings} servings</span>
+                            <span><i class="fas fa-signal mr-1"></i>${recipe.difficulty}</span>
+                            <span><i class="fas fa-fire mr-1"></i>${recipe.calories} calories</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">${recipe.carbonFootprint}</div>
+                            <div class="text-sm text-green-800">Carbon Footprint</div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-blue-600">${recipe.foodMiles}</div>
+                            <div class="text-sm text-blue-800">Food Miles</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-purple-600">${recipe.waterUsage}</div>
+                            <div class="text-sm text-purple-800">Water Usage</div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-yellow-600">${recipe.sustainability}%</div>
+                            <div class="text-sm text-yellow-800">Sustainable</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Ingredients</h3>
+                            <ul class="space-y-2">
+                                ${recipe.ingredients.map(ingredient => `
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-600 mr-2"></i>
+                                        ${ingredient}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Nutrition Per Serving</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span>Protein:</span>
+                                    <span class="font-semibold">${recipe.nutrition.protein}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Carbohydrates:</span>
+                                    <span class="font-semibold">${recipe.nutrition.carbs}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Fat:</span>
+                                    <span class="font-semibold">${recipe.nutrition.fat}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Fiber:</span>
+                                    <span class="font-semibold">${recipe.nutrition.fiber}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Instructions</h3>
+                        <ol class="space-y-3">
+                            ${recipe.instructions.map((instruction, index) => `
+                                <li class="flex">
+                                    <span class="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-1">
+                                        ${index + 1}
+                                    </span>
+                                    <span>${instruction}</span>
+                                </li>
+                            `).join('')}
+                        </ol>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        // Close recipe modal
+        function closeRecipeModal() {
+            document.getElementById('recipeModal').classList.add('hidden');
+        }
+
+        // Carbon footprint calculator
+        function calculateCarbon() {
+            const meat = parseFloat(document.getElementById('meatInput').value) || 0;
+            const dairy = parseFloat(document.getElementById('dairyInput').value) || 0;
+            const localFood = parseFloat(document.getElementById('localFoodRange').value) || 50;
+
+            // Simplified calculation (kg CO2 per day)
+            const meatCarbon = meat * 0.027; // 27g CO2 per gram of meat
+            const dairyCarbon = dairy * 0.003; // 3g CO2 per ml of dairy
+            const transportCarbon = (100 - localFood) * 0.05; // Transport emissions
+
+            const totalCarbon = meatCarbon + dairyCarbon + transportCarbon;
+            const yearlyCarbon = totalCarbon * 365;
+
+            document.getElementById('carbonValue').textContent = 
+                `${totalCarbon.toFixed(2)} kg CO2 per day (${yearlyCarbon.toFixed(0)} kg per year)`;
+            
+            let comparison = '';
+            if (totalCarbon < 2) {
+                comparison = 'Excellent! You\'re well below the average carbon footprint.';
+            } else if (totalCarbon < 4) {
+                comparison = 'Good! You\'re doing better than average.';
+            } else {
+                comparison = 'Consider reducing meat consumption and choosing more local foods.';
+            }
+            
+            document.getElementById('carbonComparison').textContent = comparison;
+            document.getElementById('carbonResult').classList.remove('hidden');
+        }
+
+        // Diet plan generator
+        function generateDietPlan() {
+            const diet = document.getElementById('dietSelect').value;
+            const calories = parseFloat(document.getElementById('calorieInput').value) || 2000;
+            const sustainability = parseFloat(document.getElementById('sustainabilityRange').value) || 8;
+
+            const dietPlans = {
+                vegan: {
+                    breakfast: 'Green smoothie with spinach, banana, and oat milk',
+                    lunch: 'Quinoa Buddha bowl with roasted vegetables',
+                    dinner: 'Lentil curry with brown rice',
+                    snacks: 'Mixed nuts and fresh fruit'
+                },
+                vegetarian: {
+                    breakfast: 'Avocado toast with hemp seeds',
+                    lunch: 'Mediterranean chickpea salad',
+                    dinner: 'Stuffed bell peppers with quinoa',
+                    snacks: 'Greek yogurt with berries'
+                },
+                pescatarian: {
+                    breakfast: 'Chia pudding with berries',
+                    lunch: 'Wild-caught salmon salad',
+                    dinner: 'Vegetable stir-fry with tofu',
+                    snacks: 'Hummus with vegetables'
+                },
+                flexitarian: {
+                    breakfast: 'Oatmeal with nuts and fruits',
+                    lunch: 'Plant-based protein bowl',
+                    dinner: 'Grilled vegetables with small portion of sustainable fish',
+                    snacks: 'Trail mix and green tea'
+                }
+            };
+
+            const plan = dietPlans[diet];
+            const planContent = `
+                <div class="space-y-3">
+                    <div><strong>Breakfast:</strong> ${plan.breakfast}</div>
+                    <div><strong>Lunch:</strong> ${plan.lunch}</div>
+                    <div><strong>Dinner:</strong> ${plan.dinner}</div>
+                    <div><strong>Snacks:</strong> ${plan.snacks}</div>
+                    <div class="mt-4 p-3 bg-yellow-50 rounded">
+                        <strong>Daily Target:</strong> ${calories} calories with ${sustainability}/10 sustainability focus
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('dietPlanContent').innerHTML = planContent;
+            document.getElementById('dietResult').classList.remove('hidden');
+        }
+
+        // Range slider updates
+        document.getElementById('localFoodRange').addEventListener('input', function() {
+            document.getElementById('localFoodValue').textContent = this.value + '% Local';
+        });
+
+        document.getElementById('sustainabilityRange').addEventListener('input', function() {
+            const value = this.value;
+            let text = 'Medium';
+            if (value <= 3) text = 'Low';
+            else if (value <= 7) text = 'Medium';
+            else text = 'High';
+            document.getElementById('sustainabilityValue').textContent = text;
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Enhanced Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('fade-in')) {
+                        entry.target.classList.add('visible');
+                    }
+                    if (entry.target.classList.contains('slide-in-left')) {
+                        entry.target.classList.add('visible');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Stats counter animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent.replace(/\D/g, ''));
+                const suffix = stat.textContent.replace(/[0-9]/g, '');
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + suffix;
+                }, 40);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            generateRecipeCards();
+            
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in, .slide-in-left').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('recipeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRecipeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+
+                closeRecipeModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
